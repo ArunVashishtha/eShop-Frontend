@@ -1,0 +1,35 @@
+# deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ecommerce-fe-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ecommerce-fe
+  template:
+    metadata:
+      labels:
+        app: ecommerce-fe
+    spec:
+      containers:
+      - name: ecommerce-fe
+        image: gcr.io/ecommerce-nag/ecommerce-fe
+        ports:
+        - containerPort: 80
+
+---
+# service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: ecommerce-fe-service
+spec:
+  selector:
+    app: ecommerce-fe
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80
+  type: LoadBalancer
