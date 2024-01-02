@@ -20,7 +20,7 @@ RUN npm run build --prod
 FROM nginx:alpine
 
 # Copy the built Angular app from the builder stage to the Nginx web server directory
-COPY --from=builder /dist/ecommerce-fe/* /usr/share/nginx/html/
+COPY --from=builder /app/dist/* /usr/share/nginx/html/
 
 # Expose port 80
 EXPOSE 80
