@@ -25,3 +25,21 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+## Deployment on GCP
+--Create a Docker file and yaml file.
+
+--Run the below commands on GCP powerShell where code exist.
+--You can upload your code repository on GCP with connecting the account of github.
+
+--Build Docker image
+docker build -t your-docker-image-name .
+
+--Tag the Docker image with the GCR repository URL:
+docker tag your-docker-image-name gcr.io/your-project-id/your-docker-image-name
+
+--Push the updated Docker image to GCR:
+docker push gcr.io/your-project-id/your-docker-image-name
+
+--deploy image in Kubectl
+kubectl apply -f ng-deployment.yaml
